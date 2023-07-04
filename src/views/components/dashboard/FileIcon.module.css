@@ -14,7 +14,19 @@
 
 .folder_icon{
     font-size: 7rem;
-    color: #d9aa00;
+    color: #d9aa00d3;
+}
+
+.shared{
+    font-size: 7rem;
+    color: #008cffa6;
+}
+
+.shared_t{
+    position: absolute;
+    padding-top: 1rem;
+    font-size: 2.3rem;
+    color: #008cff;
 }
 
 .md{

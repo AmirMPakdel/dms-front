@@ -8,6 +8,7 @@ import FileIcon from "./FileIcon";
 import { MoreOutlined } from "@ant-design/icons";
 import chest from "@/libs/utils/chest";
 import DeleteFileModal from "@/views/modals/index/DeleteFileModal";
+import RenameFileModal from "@/views/modals/index/RenameFileModal";
 
 export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     constructor(props: ItemCardProps) {
@@ -34,16 +35,32 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
          }
 
         PostRequest("/api/file/getPublicUrl", params).then(res=>{
-
-            console.log(res);
-            
             alert(env.server_domain+env.urls.get_file_from_access_link+"/"+res.data.uuid)
         });
     }
 
     onDeleteFile = ()=>{
         this.setState({ popover_open: false });
-        chest.ModalLayout.setAndShowModal(1, <DeleteFileModal data={this.props.data}/>)
+        chest.ModalLayout.setAndShowModal(1, 
+        <DeleteFileModal 
+            data={this.props.data} 
+            onSuccess={this.onDeletedSuccessfuly}/>)
+    }
+
+    onRenameFile = ()=>{
+        this.setState({ popover_open: false });
+        chest.ModalLayout.setAndShowModal(1, 
+        <RenameFileModal 
+            data={this.props.data}
+            onRename={this.onRenamedSuccessfuly}/>)
+    }
+
+    onDeletedSuccessfuly = ()=>{
+        this.props.onFolderUpdated()
+    }
+
+    onRenamedSuccessfuly = ()=>{
+        this.props.onFolderUpdated();
     }
 
     handleOpenChange = (newOpen: boolean) => {
@@ -55,6 +72,16 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     };
 
     renderMoreOptions = () => {
+
+        if(this.props.data.file.type=="shared"){
+            return (
+                <div className={styles.options_wrapper}>
+                    <a className={styles.options_item}
+                    onClick={this.onDoubleClick}>باز کردن</a>
+                </div>
+            )
+        }
+
         return (
             <div className={styles.options_wrapper}>
                 {
@@ -77,7 +104,8 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                     :null
                 }
 
-                <a className={styles.options_item}>تغییر نام</a>
+                <a className={styles.options_item}
+                onClick={this.onRenameFile}>تغییر نام</a>
 
                 <a className={styles.options_item}
                 onClick={this.onDeleteFile}>حذف</a>
@@ -115,6 +143,7 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
 interface ItemCardProps {
     data: any;
     onOpenCard: (item: any) => void;
+    onFolderUpdated: ()=>void;
 }
 
 interface ItemCardState {

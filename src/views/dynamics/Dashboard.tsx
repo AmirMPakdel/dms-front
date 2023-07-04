@@ -31,7 +31,6 @@ export default class Dashboard extends Component<
         this.controller.openFolder(this.state.current_folder_id);
     }
 
-
     onFolderUpdated = ()=>{
         this.controller.openFolder(this.state.current_folder_id);
     }
@@ -98,6 +97,7 @@ export default class Dashboard extends Component<
                             {this.state.list.map((v, i) => (
                                 <ItemCard
                                     data={v}
+                                    onFolderUpdated={this.onFolderUpdated}
                                     onOpenCard={this.onOpenCard}
                                 />
                             ))}

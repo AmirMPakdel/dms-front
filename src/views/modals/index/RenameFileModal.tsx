@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./CreateFolderModal.module.css";
+import styles from "./RenameFileModal.module.css";
 import chest from "@/libs/utils/chest";
 import CloseModalLayout from "../CloseModalLayout";
 import Dynaform from "@/libs/dynaform/Dynaform";
@@ -7,14 +7,14 @@ import PostRequest from "@/libs/rest/PostRequest";
 import { getCookie } from "@/libs/utils/cookie";
 import env from "@/env";
 
-export default class CreateFolderModal extends Component<
-    CreateFolderModalProps,
-    CreateFolderModalState
+export default class RenameFileModal extends Component<
+    RenameFileModalProps,
+    RenameFileModalState
 > {
-    constructor(props: CreateFolderModalProps) {
+    constructor(props: RenameFileModalProps) {
         super(props);
         this.state = {
-            name: "",
+            name: props.data.file.name,
         };
     }
 
@@ -29,15 +29,14 @@ export default class CreateFolderModal extends Component<
     onSubmit = () => {
         let params = {
             token: getCookie(env.cookies.user_token),
+            file_id: this.props.data.file.id,
             name: this.state.name,
-            type: "folder",
-            parent_id: this.props.currentFolderId,
         };
 
-        PostRequest("/api/dash/createFolder", params).then((result) => {
+        PostRequest("/api/file/rename", params).then((result) => {
             if (result.rc == env.statusList.SUCCESS.code) {
-                chest.openNotification("پوشه ایجاد شد", "success");
-                this.props.onCreate();
+                chest.openNotification("نام جدید ثبت شد", "success");
+                this.props.onRename();
                 chest.ModalLayout.visibleToggle(1, false);
             }
         });
@@ -50,7 +49,7 @@ export default class CreateFolderModal extends Component<
                 wrapperClass={styles.wrapper}
                 onClose={this.onCancel}
             >
-                <div className={styles.title}>{"ایجاد پوشه جدید"}</div>
+                <div className={styles.title}>{"ویرایش نام"}</div>
 
                 <Dynaform
                     style={{ border: "none" }}
@@ -62,7 +61,7 @@ export default class CreateFolderModal extends Component<
                                     {
                                         controller: "textinput",
                                         id: "name",
-                                        title: "نام پوشه",
+                                        title: "نام جدید",
                                         onChange: (name) => {
                                             this.setState({ name });
                                         },
@@ -85,17 +84,18 @@ export default class CreateFolderModal extends Component<
                         ],
                     }}
                 />
+
             </CloseModalLayout>
         );
     }
 }
 
-interface CreateFolderModalState {
+interface RenameFileModalState {
     name: string;
 }
 
-interface CreateFolderModalProps {
-    currentFolderId: number;
-    onCreate: () => void;
+interface RenameFileModalProps {
+    data: any;
+    onRename: () => void;
     onCancel?: () => void;
 }
