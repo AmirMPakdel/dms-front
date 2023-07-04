@@ -1,0 +1,13 @@
+.con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+    margin: 1rem;
+}
+
+.btn_con{
+    height: 100%;
+    width: 100%;
+}

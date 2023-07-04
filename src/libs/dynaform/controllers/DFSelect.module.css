@@ -1,0 +1,53 @@
+.select_btn{
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    padding: 0.5rem 0.8rem;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    overflow: visible !important;
+    direction: rtl;
+    cursor: pointer;
+    user-select: none;
+    background-color: white;
+    margin: 1rem;
+}
+
+.style_arrow{
+    position: absolute;
+    left: 0.8rem;
+}
+
+.title{
+    width: calc(100% - 1.6rem);
+    text-align: right;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 500;
+}
+
+.placeholder{
+    width: calc(100% - 1.6rem);
+    text-align: right;
+    opacity: 0.5;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.options{
+    direction: rtl !important;
+    width: 100% !important;
+    text-align: right !important;
+}
+
+.top_title{
+    position: absolute;
+    top: -0.6rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    padding: 0 0.4rem;
+    background-color: white;
+}

@@ -1,0 +1,92 @@
+.md_main_div{
+  min-width: 830px;
+  max-width: 830px;
+  width: 830px;
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+  border: 1px solid #ccc;
+  padding: 32px;
+  margin: 20px auto !important;
+}
+
+cnt{
+  text-align: center;
+}
+
+fa{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+}
+
+fa1{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+fa2{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+fa3{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+fa4{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 1rem;
+}
+
+fa5{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 0.9rem;
+}
+
+fa6{
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: IranSansFaNum;
+  font-size: 0.8rem;
+}
+
+h2{
+  color: #222 !important;
+}
+
+code{
+  font-size: 1rem !important;
+}
+
+.string{
+  color: #8b0000 !important;
+}
+
+.operator{
+  color: green !important;
+}
+
+.punctuation{
+  color: #800080 !important;
+}

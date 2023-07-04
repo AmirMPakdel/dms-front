@@ -1,0 +1,10 @@
+.con{
+    width: 100%;
+    padding: 1rem;
+    direction: ltr;
+}
+
+.title{
+    font-family: IranSansEng;
+    font-size: 1rem;
+}

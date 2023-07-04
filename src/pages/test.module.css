@@ -1,0 +1,14 @@
+.con{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+}
+
+.datepicker{
+    width: 10rem;
+    height: 3rem;
+    background-color: yellow;
+}

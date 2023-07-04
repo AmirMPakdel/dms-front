@@ -1,0 +1,12 @@
+.con{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+.btn{
+    width: 8rem !important;
+    height: 2.4rem !important;
+    margin: 0 1rem !important;
+}

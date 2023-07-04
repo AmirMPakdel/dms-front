@@ -1,0 +1,93 @@
+.eng_num{
+	font-family: IranSansEng;
+	direction: ltr;
+}
+
+.amp_btn{
+	transition: transform 100ms;
+	cursor: pointer;
+	user-select: none;
+}
+.amp_btn:active{
+	transform: scale(0.9);
+}
+
+.register_link:hover{
+	color: #4FBA6F;
+}
+
+.recharts-cartesian-axis-tick text{
+	direction: ltr;
+}
+
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+	background: #3A3A3A; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555; 
+}
+
+*{
+	position: relative;
+    font-family: IranSans;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+	scroll-behavior: smooth;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+#__next{
+	background-color: #EAEAEA;
+	width: 100%;
+	min-height: 100%;
+}
+
+input{
+	background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+input::placeholder{
+    user-select: none;
+	opacity: 0.5;
+}
+
+textarea{
+	outline: none;
+	resize: none !important;
+	border: none;
+}
+
+textarea::placeholder{
+    user-select: none;
+	opacity: 0.5;
+}
+
+.brd1{
+	border-style: solid;
+	border-width: 1px;
+}
+
+.brd2{
+	border-style: solid;
+	border-width: 2px;
+}

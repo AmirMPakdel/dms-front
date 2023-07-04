@@ -1,0 +1,240 @@
+:root {
+    --maincolor1: #F5DF4D;
+    --maincolor2: #FBAD16;
+    --errorcolor: #F54D4D;
+    --successcolor: #00C853;
+    --d1: #000000;
+    --d2: #3A3A3A;
+    --d3: #939597;
+    --w1: #FFFFFF;
+    --w2: #F9F9F9;
+    --w3: #F4F4F4;
+    --w4: #E6E6E6;
+
+    --tbutton-color: #FFFFFF;
+    --tbutton-bgcolor: #F5DF4D;
+}
+
+
+.tbgc1{
+    background-color: var(--maincolor1);
+}
+.tc1{
+    color: var(--maincolor1);
+}
+.tbc1{
+    border-color: var(--maincolor1);
+}
+.tbgc2{
+    background-color: var(--maincolor2);
+}
+.tc2{
+    color: var(--maincolor2);
+}
+.tbc2{
+    border-color: var(--maincolor2);
+}
+.tbgcerr{
+    background-color: var(--errorcolor);
+}
+.tcerr{
+    color: var(--errorcolor);
+}
+.tbcerr{
+    border-color: var(--errorcolor);
+}
+.tbgcscs{
+    background-color: var(--successcolor);
+}
+.tcscs{
+    color: var(--successcolor);
+}
+.tbcscs{
+    border-color: var(--successcolor);
+}
+.tbutton-c{
+    color: var();
+}
+.bgdark{
+    background-color: var(--d1);
+}
+.fdark{
+    color: var(--d1);
+}
+.bdcdark{
+    border-color: var(--d1);
+}
+.bgdc1{
+    background-color: var(--d2);
+}
+.fdc1{
+    color: var(--d2);
+}
+.bdc1{
+    border-color: var(--d2);
+}
+.bgdc2{
+    background-color: var(--d3);
+}
+.fdc2{
+    color: var(--d3);
+}
+.bdc2{
+    border-color: var(--d3);
+}
+.bgw{
+    background-color: var(--w1);
+}
+.fw{
+    color: var(--w1);
+}
+.bw{
+    border-color: var(--w1);
+}
+.bglc1{
+    background-color: var(--w2);
+}
+.flc1{
+    color: var(--w2);
+}
+.blc1{
+    border-color: var(--w2);
+}
+.bglc2{
+    background-color: var(--w3);
+}
+.flc2{
+    color: var(--w3);
+}
+.blc2{
+    border-color: var(--w3);
+}
+.bglc3{
+    background-color: var(--w4);
+}
+.flc3{
+    color: var(--w4);
+}
+.blc3{
+    border-color: var(--w4);
+}
+.bgdc3{
+    background-color: var(--w5);
+}
+.fdc3{
+    color: var(--w5);
+}
+.bdc3{
+    border-color: var(--w5);
+}
+/*******************************************************************************
+    !important mode
+*******************************************************************************/
+.tbgc1i{
+    background-color: var(--maincolor1) !important;
+}
+.tc1i{
+    color: var(--maincolor1) !important;
+}
+.tbc1i{
+    border-color: var(--maincolor1) !important;
+}
+.tbgc2i{
+    background-color: var(--maincolor2) !important;
+}
+.tc2i{
+    color: var(--maincolor2) !important;
+}
+.tbc2i{
+    border-color: var(--maincolor2) !important;
+}
+.tbgcerri{
+    background-color: var(--errorcolor) !important;
+}
+.tcerri{
+    color: var(--errorcolor) !important;
+}
+.tbcerri{
+    border-color: var(--errorcolor) !important;
+}
+.tbgcscsi{
+    background-color: var(--successcolor) !important;
+}
+.tcscsi{
+    color: var(--successcolor) !important;
+}
+.tbcscsi{
+    border-color: var(--successcolor) !important;
+}
+.bgdarki{
+    background-color: var(--d1) !important;
+}
+.fdarki{
+    color: var(--d1) !important;
+}
+.bdcdarki{
+    border-color: var(--d1) !important;
+}
+.bgdc1i{
+    background-color: var(--d2) !important;
+}
+.fdc1i{
+    color: var(--d2) !important;
+}
+.bdc1i{
+    border-color: var(--d2) !important;
+}
+.bgdc2i{
+    background-color: var(--d3) !important;
+}
+.fdc2i{
+    color: var(--d3) !important;
+}
+.bdc2i{
+    border-color: var(--d3) !important;
+}
+.bgwi{
+    background-color: var(--w1) !important;
+}
+.fwi{
+    color: var(--w1) !important;
+}
+.bwi{
+    border-color: var(--w1) !important;
+}
+.bglc1i{
+    background-color: var(--w2) !important;
+}
+.flc1i{
+    color: var(--w2) !important;
+}
+.blc1i{
+    border-color: var(--w2) !important;
+}
+.bglc2i{
+    background-color: var(--w3) !important;
+}
+.flc2i{
+    color: var(--w3) !important;
+}
+.blc2i{
+    border-color: var(--w3) !important;
+}
+.bglc2i{
+    background-color: var(--w4) !important;
+}
+.flc2i{
+    color: var(--w4) !important;
+}
+.blc2i{
+    border-color: var(--w4) !important;
+}
+.bgdc3i{
+    background-color: var(--w5) !important;
+}
+.fdc3i{
+    color: var(--w5) !important;
+}
+.bdc3i{
+    border-color: var(--w5) !important;
+}

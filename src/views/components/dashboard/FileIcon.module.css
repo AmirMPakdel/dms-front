@@ -1,0 +1,96 @@
+
+.file_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.file_wrapper * {
+    font-family: IranSansEng;
+    user-select: none;
+}
+
+.folder_icon{
+    font-size: 7rem;
+    color: #d9aa00;
+}
+
+.md{
+    font-size: 6rem;
+    color: #4a007f;
+}
+
+.md_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #4a007f;
+    position: absolute;
+    padding-top: 1.8rem;
+}
+
+.pdf{
+    font-size: 6rem;
+    color: #8b000c;
+}
+
+.pdf_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #8b000c;
+    position: absolute;
+    padding-top: 1.8rem;
+}
+
+.jpg{
+    font-size: 6rem;
+    color: #cc4b00;
+}
+
+.jpg_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #cc4b00;
+    position: absolute;
+    padding-top: 1.8rem;
+}
+
+.png{
+    font-size: 6rem;
+    color: #b30077;
+}
+
+.png_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #b30077;
+    position: absolute;
+    padding-top: 1.8rem;
+}
+
+.gif{
+    font-size: 6rem;
+    color: #008f13;
+}
+
+.gif_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #008f13;
+    position: absolute;
+    padding-top: 1.8rem;
+}
+
+.mp4{
+    font-size: 6rem;
+    color: #0077ff;
+}
+
+.mp4_t{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0077ff;
+    position: absolute;
+    padding-top: 1.8rem;
+}

@@ -1,0 +1,18 @@
+.con{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    align-items: center;
+    background-color: white;
+}
+
+.md{
+    width: 960px;
+    margin: 2rem 0;
+}
+
+.md * {
+    font-family: IranSansEng !important;
+}
