@@ -26,7 +26,7 @@ export default class ShareListModal extends Component<
         let params = {
             file_id: this.props.data.file_id
         }
-        PostRequest("/api/file/getSharedUsers", params, {addUserToken:true}).then(res=>{
+        PostRequest("/api/file/getFileSharedUsersCtl", params, {addUserToken:true}).then(res=>{
 
             if(res.rc == env.statusList.SUCCESS.code){
                 
