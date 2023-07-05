@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import styles from "./RenameFileModal.module.css";
+import styles from "./AddSharedUserModal.module.css";
 import chest from "@/libs/utils/chest";
 import CloseModalLayout from "../CloseModalLayout";
+import { Button } from "antd";
 import Dynaform from "@/libs/dynaform/Dynaform";
 import PostRequest from "@/libs/rest/PostRequest";
 import { getCookie } from "@/libs/utils/cookie";
 import env from "@/env";
 
-export default class RenameFileModal extends Component<
-    RenameFileModalProps,
-    RenameFileModalState
+export default class AddSharedUserModal extends Component<
+    AddSharedUserModalProps,
+    AddSharedUserModalState
 > {
-    constructor(props: RenameFileModalProps) {
+    constructor(props: AddSharedUserModalProps) {
         super(props);
         this.state = {
-            name: props.data.file.name,
+            username: "",
         };
     }
 
@@ -22,25 +23,25 @@ export default class RenameFileModal extends Component<
         if (this.props.onCancel) {
             this.props.onCancel();
         } else {
-            chest.ModalLayout.visibleToggle(1, false);
+            chest.ModalLayout.visibleToggle(2, false);
         }
     };
 
-    onSubmit = () => {
-        let params = {
-            token: getCookie(env.cookies.user_token),
-            file_id: this.props.data.file.id,
-            name: this.state.name,
-        };
+    onSubmit= () =>{
 
-        PostRequest("/api/file/rename", params).then((result) => {
-            if (result.rc == env.statusList.SUCCESS.code) {
-                chest.openNotification("نام آیتم ویرایش شد", "success");
-                this.props.onRename();
-                chest.ModalLayout.visibleToggle(1, false);
+        let params = {
+            username: this.state.username,
+            file_id: this.props.data.file_id,
+        }
+        PostRequest("/api/file/addShareUser", params, {addUserToken:true}).then(res=>{
+
+            if(res.rc == env.statusList.SUCCESS.code){
+                chest.openNotification("فایل با کاربر به اشتراک گذاشته شد", "success");
+                chest.ModalLayout.visibleToggle(2, false);
             }
         });
-    };
+        
+    }
 
     render() {
         return (
@@ -49,7 +50,9 @@ export default class RenameFileModal extends Component<
                 wrapperClass={styles.wrapper}
                 onClose={this.onCancel}
             >
-                <div className={styles.title}>{"ویرایش نام"}</div>
+                <div className={styles.title}>{"اضافه کردن کاربر به لیست اشتراک این فایل"}</div>
+
+                
 
                 <Dynaform
                     style={{ border: "none" }}
@@ -60,12 +63,12 @@ export default class RenameFileModal extends Component<
                                 elements: [
                                     {
                                         controller: "textinput",
-                                        id: "name",
-                                        title: "نام جدید",
-                                        onChange: (name) => {
-                                            this.setState({ name });
+                                        id: "username",
+                                        title: "نام کاربری",
+                                        onChange: (username) => {
+                                            this.setState({ username });
                                         },
-                                        value: this.state.name,
+                                        value: this.state.username,
                                     },
                                 ],
                             },
@@ -84,18 +87,17 @@ export default class RenameFileModal extends Component<
                         ],
                     }}
                 />
-
+                
             </CloseModalLayout>
         );
     }
 }
 
-interface RenameFileModalState {
-    name: string;
+interface AddSharedUserModalState {
+    username: string;
 }
 
-interface RenameFileModalProps {
+interface AddSharedUserModalProps {
     data: any;
-    onRename: () => void;
     onCancel?: () => void;
 }

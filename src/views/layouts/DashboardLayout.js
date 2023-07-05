@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import styles from "./DashboardLayout.module.css";
 import AccessLayout from "@/views/layouts/AccessLayout";
 import ModalLayout from "@/views/layouts/ModalLayout";
+import { ConfigProvider } from "antd";
 // import Observer from "@/utils/observer";
 // import LogoutSvg from "@/views/svgs/Logout";
 // import NotificationSvg from "@/views/svgs/Notification";
@@ -13,13 +14,10 @@ import ModalLayout from "@/views/layouts/ModalLayout";
 // import { deleteCookie } from "@/utils/cookie";
 // import { Tooltip } from "node_modules/antd/lib/index";
 
-
-
 export default class DashboardLayout extends Component {
-
-    state={
-        menu_is_open : false,
-    }
+    state = {
+        menu_is_open: false,
+    };
 
     // componentDidMount(){
     //     changeCSSVars(themes.userDefault);
@@ -48,18 +46,23 @@ export default class DashboardLayout extends Component {
     //     deleteCookie(env.TOKEN_KEY);
     //     window.location.href = env.PATHS.USER_AUTHENTICATION;
     // }
-    
-    render(){
-        return(
 
+    render() {
+        return (
             <ModalLayout>
-                
-                <AccessLayout accessType={this.props.accessType}
-                showWithoutAuth={this.props.showWithoutAuth}>
-                
-                    <div className={styles.layout}>
-                        
-                        {/* <div className={styles.header_bar+" sm_card_shd bgwi"}>
+                <AccessLayout
+                    accessType={this.props.accessType}
+                    showWithoutAuth={this.props.showWithoutAuth}
+                >
+                    <ConfigProvider
+                        theme={{
+                            token: {
+                                colorPrimary: "#003e29",
+                            },
+                        }}
+                    >
+                        <div className={styles.layout}>
+                            {/* <div className={styles.header_bar+" sm_card_shd bgwi"}>
 
                             <SideMenu/> 
 
@@ -90,17 +93,15 @@ export default class DashboardLayout extends Component {
                             </div> 
                             
                         </div> */}
-                        
-                        <div className={styles.wrapper}>
-                            {this.props.children}
-                            {/* <NotificationsMenu/> */}
+
+                            <div className={styles.wrapper}>
+                                {this.props.children}
+                                {/* <NotificationsMenu/> */}
+                            </div>
                         </div>
-
-                    </div>
-
+                    </ConfigProvider>
                 </AccessLayout>
-                
             </ModalLayout>
-        )
+        );
     }
 }

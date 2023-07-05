@@ -9,6 +9,7 @@ import { MoreOutlined } from "@ant-design/icons";
 import chest from "@/libs/utils/chest";
 import DeleteFileModal from "@/views/modals/index/DeleteFileModal";
 import RenameFileModal from "@/views/modals/index/RenameFileModal";
+import ShareListModal from "@/views/modals/index/ShareListModal";
 
 export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     constructor(props: ItemCardProps) {
@@ -39,12 +40,19 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
         });
     }
 
+    showShareList = ()=>{
+
+        this.setState({ popover_open: false });
+        chest.ModalLayout.setAndShowModal(1, 
+        <ShareListModal data={this.props.data}/>)
+    }
+
     onDeleteFile = ()=>{
         this.setState({ popover_open: false });
         chest.ModalLayout.setAndShowModal(1, 
         <DeleteFileModal 
             data={this.props.data} 
-            onSuccess={this.onDeletedSuccessfuly}/>)
+            onSuccess={this.updateFolder}/>)
     }
 
     onRenameFile = ()=>{
@@ -52,15 +60,11 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
         chest.ModalLayout.setAndShowModal(1, 
         <RenameFileModal 
             data={this.props.data}
-            onRename={this.onRenamedSuccessfuly}/>)
+            onRename={this.updateFolder}/>)
     }
 
-    onDeletedSuccessfuly = ()=>{
+    updateFolder = ()=>{
         this.props.onFolderUpdated()
-    }
-
-    onRenamedSuccessfuly = ()=>{
-        this.props.onFolderUpdated();
     }
 
     handleOpenChange = (newOpen: boolean) => {
@@ -101,6 +105,12 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                     this.props.data.file.type != "folder" ?
                     <a className={styles.options_item}
                         onClick={this.showPublicAccessLink}>لینک عمومی</a>
+                    :null
+                }
+                {
+                    this.props.data.file.type != "folder" ?
+                    <a className={styles.options_item}
+                        onClick={this.showShareList}>اشتراک گذاری</a>
                     :null
                 }
 

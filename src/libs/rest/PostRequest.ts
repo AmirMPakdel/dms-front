@@ -14,6 +14,10 @@ export default function PostRequest(
         //     Cookie: env.cookies.user_token+"="+getCookie(env.cookies.user_token)+";",
         // }
 
+        if(options?.addUserToken){
+            body.token = getCookie(env.cookies.user_token);
+        }
+
         axios
             .post(env.server_domain+url, body)
             .then((value) => {
@@ -40,4 +44,6 @@ interface RequestResolveValue {
     data?: any,
 }
 
-interface RequestOptions {}
+interface RequestOptions {
+    addUserToken?: boolean
+}

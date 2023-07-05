@@ -1,7 +1,7 @@
 
 .con{
     width: 48rem;
-    height: 38rem;
+    height: 24rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -46,14 +46,6 @@
 
 .add{
     height: 3rem;
-}
-
-.table{
-    width: 100%;
-    padding: 0 2rem;
-    margin-top: 1rem;
-    /* max-height: 20rem;
-    overflow-y: auto; */
 }
 
 .sec1{

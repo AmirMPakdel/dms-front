@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./CloseModalLayout.module.css";
 import { CloseOutlined } from "@ant-design/icons";
+import { ConfigProvider } from "antd";
 
 export default class CloseModalLayout extends Component<
     CloseModalLayoutProps,
@@ -24,20 +25,28 @@ export default class CloseModalLayout extends Component<
         }
 
         return (
-            <div className={styles.con + " " + className}>
-                {this.props.closable === false ? null : (
-                    <CloseOutlined
-                        className={
-                            styles.close_btn + " bgw amp_btn md_card_shd"
-                        }
-                        onClick={this.props.onClose}
-                    />
-                )}
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#003e29",
+                    },
+                }}
+            >
+                <div className={styles.con + " " + className}>
+                    {this.props.closable === false ? null : (
+                        <CloseOutlined
+                            className={
+                                styles.close_btn + " bgw amp_btn md_card_shd"
+                            }
+                            onClick={this.props.onClose}
+                        />
+                    )}
 
-                <div className={styles.wrapper + " " + wrapperClass}>
-                    {this.props.children}
+                    <div className={styles.wrapper + " " + wrapperClass}>
+                        {this.props.children}
+                    </div>
                 </div>
-            </div>
+            </ConfigProvider>
         );
     }
 }
