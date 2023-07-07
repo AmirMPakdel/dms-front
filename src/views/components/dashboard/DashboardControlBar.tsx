@@ -38,6 +38,7 @@ export default class DashboardControlBar extends Component<
                         className={styles.btn}
                         type="default"
                         onClick={this.props.onCreateFolder}
+                        disabled={this.props.currentFolderId===-1}
                     >
                         {"ایجاد پوشه"}
                     </Button>
@@ -48,6 +49,7 @@ export default class DashboardControlBar extends Component<
                         className={styles.btn}
                         type="default"
                         onClick={this.props.onUploadFile}
+                        disabled={this.props.currentFolderId===-1}
                     >
                         {"آپلود فایل"}
                     </Button>

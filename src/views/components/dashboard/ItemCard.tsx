@@ -10,6 +10,7 @@ import chest from "@/libs/utils/chest";
 import DeleteFileModal from "@/views/modals/index/DeleteFileModal";
 import RenameFileModal from "@/views/modals/index/RenameFileModal";
 import ShareListModal from "@/views/modals/index/ShareListModal";
+import DeleteSharedFileModal from "@/views/modals/index/DeleteSharedFileModal";
 
 export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     constructor(props: ItemCardProps) {
@@ -30,40 +31,48 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
 
     showPublicAccessLink = () => {
 
-        let params = { 
+        let params = {
             token: getCookie(env.cookies.user_token),
             file_id: this.props.data.file.id
-         }
+        }
 
-        PostRequest("/api/file/getPublicUrl", params).then(res=>{
-            alert(env.server_domain+env.urls.get_file_from_access_link+"/"+res.data.uuid)
+        PostRequest("/api/file/getPublicUrl", params).then(res => {
+            alert(env.server_domain + env.urls.get_file_from_access_link + "/" + res.data.uuid)
         });
     }
 
-    showShareList = ()=>{
+    showShareList = () => {
 
         this.setState({ popover_open: false });
-        chest.ModalLayout.setAndShowModal(1, 
-        <ShareListModal data={this.props.data}/>)
+        chest.ModalLayout.setAndShowModal(1,
+            <ShareListModal data={this.props.data} />)
     }
 
-    onDeleteFile = ()=>{
+    onDeleteFile = () => {
         this.setState({ popover_open: false });
-        chest.ModalLayout.setAndShowModal(1, 
-        <DeleteFileModal 
-            data={this.props.data} 
-            onSuccess={this.updateFolder}/>)
+        chest.ModalLayout.setAndShowModal(1,
+            <DeleteFileModal
+                data={this.props.data}
+                onSuccess={this.updateFolder} />)
     }
 
-    onRenameFile = ()=>{
+    onDeleteSharedFile = () =>{
         this.setState({ popover_open: false });
-        chest.ModalLayout.setAndShowModal(1, 
-        <RenameFileModal 
-            data={this.props.data}
-            onRename={this.updateFolder}/>)
+        chest.ModalLayout.setAndShowModal(1,
+            <DeleteSharedFileModal
+                data={this.props.data}
+                onSuccess={this.updateFolder} />)
     }
 
-    updateFolder = ()=>{
+    onRenameFile = () => {
+        this.setState({ popover_open: false });
+        chest.ModalLayout.setAndShowModal(1,
+            <RenameFileModal
+                data={this.props.data}
+                onRename={this.updateFolder} />)
+    }
+
+    updateFolder = () => {
         this.props.onFolderUpdated()
     }
 
@@ -72,16 +81,30 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     };
 
     renderIcon = (type: string) => {
-        return <FileIcon type={type}/>
+        return <FileIcon type={type} />
     };
 
     renderMoreOptions = () => {
 
-        if(this.props.data.file.type=="shared"){
+        if (this.props.data.file.type == "shared") {
             return (
                 <div className={styles.options_wrapper}>
                     <a className={styles.options_item}
-                    onClick={this.onDoubleClick}>باز کردن</a>
+                        onClick={this.onDoubleClick}>باز کردن</a>
+                </div>
+            )
+        }
+
+        if (this.props.data.owner_id) {
+            return (
+                <div className={styles.options_wrapper}>
+
+                    <a className={styles.options_item}
+                        onClick={this.onDoubleClick}>باز کردن</a>
+
+                    <a className={styles.options_item}
+                        onClick={this.onDeleteSharedFile}>لغو اشتراک گذاری</a>
+
                 </div>
             )
         }
@@ -103,22 +126,22 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                 }
                 {
                     this.props.data.file.type != "folder" ?
-                    <a className={styles.options_item}
-                        onClick={this.showPublicAccessLink}>لینک عمومی</a>
-                    :null
+                        <a className={styles.options_item}
+                            onClick={this.showPublicAccessLink}>لینک عمومی</a>
+                        : null
                 }
                 {
                     this.props.data.file.type != "folder" ?
-                    <a className={styles.options_item}
-                        onClick={this.showShareList}>اشتراک گذاری</a>
-                    :null
+                        <a className={styles.options_item}
+                            onClick={this.showShareList}>اشتراک گذاری</a>
+                        : null
                 }
 
                 <a className={styles.options_item}
-                onClick={this.onRenameFile}>تغییر نام</a>
+                    onClick={this.onRenameFile}>تغییر نام</a>
 
                 <a className={styles.options_item}
-                onClick={this.onDeleteFile}>حذف</a>
+                    onClick={this.onDeleteFile}>حذف</a>
 
             </div>
         );
@@ -153,7 +176,7 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
 interface ItemCardProps {
     data: any;
     onOpenCard: (item: any) => void;
-    onFolderUpdated: ()=>void;
+    onFolderUpdated: () => void;
 }
 
 interface ItemCardState {

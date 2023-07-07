@@ -27,20 +27,20 @@ export default class AddSharedUserModal extends Component<
         }
     };
 
-    onSubmit= () =>{
+    onSubmit = () => {
 
         let params = {
             username: this.state.username,
             file_id: this.props.data.file_id,
         }
-        PostRequest("/api/file/addShareUser", params, {addUserToken:true}).then(res=>{
+        PostRequest("/api/file/addShareUser", params, { addUserToken: true }).then(res => {
 
-            if(res.rc == env.statusList.SUCCESS.code){
+            if (res.rc == env.statusList.SUCCESS.code) {
                 chest.openNotification("فایل با کاربر به اشتراک گذاشته شد", "success");
                 chest.ModalLayout.visibleToggle(2, false);
+                this.props.updateList();
             }
         });
-        
     }
 
     render() {
@@ -51,8 +51,6 @@ export default class AddSharedUserModal extends Component<
                 onClose={this.onCancel}
             >
                 <div className={styles.title}>{"اضافه کردن کاربر به لیست اشتراک این فایل"}</div>
-
-                
 
                 <Dynaform
                     style={{ border: "none" }}
@@ -87,7 +85,7 @@ export default class AddSharedUserModal extends Component<
                         ],
                     }}
                 />
-                
+
             </CloseModalLayout>
         );
     }
@@ -100,4 +98,5 @@ interface AddSharedUserModalState {
 interface AddSharedUserModalProps {
     data: any;
     onCancel?: () => void;
+    updateList: () => void;
 }

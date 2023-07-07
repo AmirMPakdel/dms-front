@@ -3,11 +3,9 @@ export default class Observer {
         onResize: [],
         onAuthenticate: [],
         onUserChange: [],
-        onSideMenuToggle: [],
-        onStudentChange: [],
-        onFooterChange: [],
-        onUrlStateChange: [],
-        onSiteInfoChange: [],
+        onChangeDirectory: [],
+        onOpenDirectory: [],
+        onPrevDirectory: [],
     };
 
     static add(name: string, func: Function) {

@@ -1,6 +1,7 @@
 import env from "@/env";
 import axios from "axios";
-import { getCookie } from "../utils/cookie";
+import { getCookie, setCookie } from "../utils/cookie";
+import { authRedirection } from "../utils/redirect";
 
 export default function PostRequest(
     url: string,
@@ -24,11 +25,14 @@ export default function PostRequest(
 
                 if(value.status != 200){
                     resolve({error: value.statusText});
-                    return;
+                }else{
+                    if(value.data.rc == env.statusList.AUTH_FAILED.code){
+                        setCookie(env.cookies.user_token, "", -1);
+                        authRedirection();
+                    }else{
+                        resolve(value.data);
+                    }
                 }
-
-                resolve(value.data);
-
             })
             .catch((reason) => {
 

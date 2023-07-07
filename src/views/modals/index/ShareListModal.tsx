@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./ShareListModal.module.css";
 import chest from "@/libs/utils/chest";
 import CloseModalLayout from "../CloseModalLayout";
-import { Button, Table } from "antd";
+import { Button, Popconfirm, Table } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 import AddSharedUserModal from "./AddSharedUserModal";
 import Loading from "@/views/components/global/Loading";
@@ -22,14 +22,20 @@ export default class ShareListModal extends Component<
     }
 
     componentDidMount(): void {
-        
+
+        this.loadList();
+    }
+
+    loadList = () => {
+
         let params = {
             file_id: this.props.data.file_id
         }
-        PostRequest("/api/file/getFileSharedUsersCtl", params, {addUserToken:true}).then(res=>{
+        this.setState({ loading: true, list: [] });
+        PostRequest("/api/file/getFileSharedUsers", params, { addUserToken: true }).then(res => {
 
-            if(res.rc == env.statusList.SUCCESS.code){
-                
+            if (res.rc == env.statusList.SUCCESS.code) {
+
                 this.setState({
                     loading: false,
                     list: res.data.list,
@@ -49,9 +55,27 @@ export default class ShareListModal extends Component<
     onAddUser = () => {
         chest.ModalLayout.setAndShowModal(
             2,
-            <AddSharedUserModal data={this.props.data} />
+            <AddSharedUserModal data={this.props.data}
+                updateList={this.loadList} />
         );
     };
+
+    deleteItem = (item: any) => {
+        return new Promise((resolve) => {
+            let params = {
+                shared_node_id: item.id,
+                type: "owner",
+            };
+            PostRequest("/api/file/deleteSharedUser", params,
+                { addUserToken: true }).then(res => {
+                    resolve(null);
+                    if (res.rc == env.statusList.SUCCESS.code) {
+                        this.loadList();
+                        chest.openNotification("کاربر از لیست اشتراک گذاری های این فایل حذف شد.", "success");
+                    }
+                });
+        });
+    }
 
     render() {
         return (
@@ -65,7 +89,7 @@ export default class ShareListModal extends Component<
                 </div>
 
                 {this.state.loading ? (
-                    <Loading style={{minHeight:"20rem"}} scale={0.7}/>
+                    <Loading style={{ minHeight: "20rem" }} scale={0.7} />
                 ) : (
                     <>
                         <div className={styles.controller_con}>
@@ -87,8 +111,8 @@ export default class ShareListModal extends Component<
 
                         <div className={styles.table}>
                             <Table
-                                columns={columns}
-                                scroll={{ y: 300 }}
+                                columns={columns(this.deleteItem)}
+                                scroll={{ y: 260 }}
                                 dataSource={this.state.list}
                                 pagination={false}
                             />
@@ -100,14 +124,30 @@ export default class ShareListModal extends Component<
     }
 }
 
-const columns = [
+const columns = (deleteItem: any) => [
     {
         title: "نام کاربری",
         dataIndex: "username",
         key: "username",
-        // render: (text:string) => <a>{text}</a>
+        render: (text: string) =>
+            <div className={styles.usernames}>{text}</div>
     },
-    {},
+    {
+        title: "حذف",
+        key: "delete",
+        render: (text: string, record: any) =>
+            <Popconfirm
+                overlayClassName={styles.popconfirm}
+                title="حذف آیتم"
+                okText="تایید"
+                cancelText="انصراف"
+                description="آیا از حذف این اشتراک گذاری مطمئن هستید؟"
+                onConfirm={() => deleteItem(record)}
+                onOpenChange={() => console.log('open change')}
+            >
+                <Button type="primary"> {"حذف"} </Button>
+            </Popconfirm>,
+    },
 ];
 
 interface ShareListModalState {

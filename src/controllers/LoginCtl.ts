@@ -20,10 +20,7 @@ export default class LoginCtl {
         let result = await this.model.sendLoginReq(params);
 
         if (result) {
-            console.log(result);
-
             setCookie(env.cookies.user_token, result.token, 90);
-            alert(env.routes.user_dashboard)
             window.location.href = env.routes.user_dashboard;
         }
     };

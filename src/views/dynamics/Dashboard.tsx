@@ -11,6 +11,7 @@ import CreateFolderModal from "../modals/index/CreateFolderModal";
 import Loading from "../components/global/Loading";
 import UploadFileModal from "../modals/index/UploadFileModal";
 import EmptyList from "../components/global/EmptyList";
+import Observer from "@/libs/utils/observer";
 
 export default class Dashboard extends Component<
     DashboardProps,
@@ -28,9 +29,38 @@ export default class Dashboard extends Component<
         };
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
+        Observer.add("onChangeDirectory", this.onChangeDirectory);
+        Observer.add("onOpenDirectory", this.onOpenDirectory);
+        Observer.add("onPrevDirectory", this.onPrevDirectory);
         this.controller.openFolder(this.state.current_folder_id);
     }
+
+    componentWillUnmount() {
+        Observer.remove("onChangeDirectory", this.onChangeDirectory);
+        Observer.remove("onOpenDirectory", this.onOpenDirectory);
+        Observer.remove("onPrevDirectory", this.onPrevDirectory);
+    }
+
+    onChangeDirectory = (node: any) => {
+        this.controller.onOpenCard(node);
+    }
+
+    onOpenDirectory = (node: any) => {
+        this.controller.onOpenCard(node);
+    }
+
+    onPrevDirectory = (current_node_id: number) => {
+        this.controller.openPrevFolder(current_node_id);
+    }
+
+    onBackToPreviousFolder = () => {
+        Observer.execute("onPrevDirectory", this.state.current_folder_id);
+    };
+
+    onOpenCard = (item: any) => {
+        Observer.execute("onOpenDirectory", item);
+    };
 
     onFolderUpdated = () => {
         this.controller.openFolder(this.state.current_folder_id);
@@ -56,14 +86,6 @@ export default class Dashboard extends Component<
         );
     };
 
-    onBackToPreviousFolder = () => {
-        this.controller.openPrevFolder(this.state.current_folder_id);
-    };
-
-    onOpenCard = (item: any) => {
-        this.controller.onOpenCard(item);
-    };
-
     render(): React.ReactNode {
         return (
             <DashboardLayout>
@@ -83,14 +105,17 @@ export default class Dashboard extends Component<
                             <Breadcrumb />
                         </div>
 
-                        <div className={styles.dashcontorolbar_wrapper}>
-                            <DashboardControlBar
-                                onCreateFolder={this.onCreateFolder}
-                                onUploadFile={this.onUploadFile}
-                                onBack={this.onBackToPreviousFolder}
-                                currentFolderId={this.state.current_folder_id}
-                            />
-                        </div>
+                        {
+                            this.state.loading ? null :
+                                <div className={styles.dashcontorolbar_wrapper}>
+                                    <DashboardControlBar
+                                        onCreateFolder={this.onCreateFolder}
+                                        onUploadFile={this.onUploadFile}
+                                        onBack={this.onBackToPreviousFolder}
+                                        currentFolderId={this.state.current_folder_id}
+                                    />
+                                </div>
+                        }
 
                         <div className={styles.items_wrapper}>
                             {this.state.loading ? (
@@ -112,8 +137,8 @@ export default class Dashboard extends Component<
                                         ))
                                     ) : (
                                         <EmptyList style={{ height: "calc(50vh - 8rem)" }}
-                                        title={this.state.current_folder_id==-1?
-                                            "!فایلی با شما به اشتراک گذاشته نشده است":undefined}/>
+                                            title={this.state.current_folder_id == -1 ?
+                                                "!فایلی با شما به اشتراک گذاشته نشده است" : undefined} />
                                     )}
                                 </>
                             )}
@@ -131,4 +156,4 @@ interface DashboardState {
     list: any[];
 }
 
-interface DashboardProps {}
+interface DashboardProps { }

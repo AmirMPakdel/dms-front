@@ -35,6 +35,7 @@ export default class DashboardCtl {
     }
 
     openFolder = (folder_id: number) => {
+
         this.view.setState({
             loading: true,
             list: [],

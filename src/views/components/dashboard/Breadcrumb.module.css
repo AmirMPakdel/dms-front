@@ -7,4 +7,6 @@
 .title{
     font-family: IranSansEng;
     font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
 }
