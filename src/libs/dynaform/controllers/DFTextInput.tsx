@@ -81,7 +81,7 @@ export default class DFTextInput extends Component<DFTextInputProps> {
         }
 
         if (this.props.error) {
-            add_class += " beci ";
+            add_class += " tbcerri ";
         }
 
         let m_input_type = "";
@@ -129,7 +129,7 @@ export default class DFTextInput extends Component<DFTextInputProps> {
                 />
 
                 {this.props.error || this.state.error ? (
-                    <div className={styles.error + " fec"}>
+                    <div className={styles.error + " tcerr"}>
                         {this.props.error || this.state.error}
                     </div>
                 ) : null}
@@ -154,7 +154,7 @@ export interface DFTextInputProps {
     style?: React.CSSProperties;
     inputStyle?: React.CSSProperties;
     titleStyle?: React.CSSProperties;
-    error?: string;
+    error?: string | null;
     direction?: any;
     opacity?: any;
 

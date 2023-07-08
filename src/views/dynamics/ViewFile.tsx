@@ -13,6 +13,7 @@ export default class ViewFile extends Component<ViewFileProps, ViewFileState> {
     constructor(props: ViewFileProps) {
         super(props);
         this.controller = new ViewFileCtl(this);
+        window.document.title = "نمایش فایل | سامانه مدیریت مستندات فنی"
         this.state = {
         };
     }

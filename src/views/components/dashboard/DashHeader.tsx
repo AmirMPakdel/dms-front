@@ -4,7 +4,7 @@ import styles from "./DashHeader.module.css";
 import { LogoutOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
 import chest from "@/libs/utils/chest";
 import UserInfoModal from "@/views/modals/index/UserInfoModal";
-import { setCookie } from "@/libs/utils/cookie";
+import { getCookie, setCookie } from "@/libs/utils/cookie";
 import env from "@/env";
 import { goToLoginPage } from "@/libs/utils/redirect";
 
@@ -16,6 +16,7 @@ export default class DashHeader extends Component<
         super(props);
         this.state = {
             popover_open: false,
+            fullname: getCookie(env.cookies.user_fullname) || "user",
         };
     }
 
@@ -70,7 +71,7 @@ export default class DashHeader extends Component<
                         <div className={styles.profile_btn}
                         onClick={this.onProfileBtn}>
                             <div className={styles.name}>
-                                {"امیرمحمد پاکدل"}
+                                {this.state.fullname}
                             </div>
                             <img
                                 className={styles.user_icon}
@@ -96,4 +97,5 @@ interface DashHeaderProps {}
 
 interface DashHeaderState {
     popover_open:boolean;
+    fullname: string;
 }

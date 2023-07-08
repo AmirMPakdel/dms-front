@@ -17,6 +17,7 @@ export default class UserInfoModal extends Component<
             username:"",
             firstname:"",
             lastname:"",
+            national_code:"",
         };
     }
 
@@ -37,6 +38,7 @@ export default class UserInfoModal extends Component<
                     username: res.data.username,
                     firstname: res.data.firstname,
                     lastname: res.data.lastname,
+                    national_code: res.data.national_code,
                 });
             }
         });
@@ -77,6 +79,10 @@ export default class UserInfoModal extends Component<
                             <div>{"نام خانوادگی"}</div>
                             <div>{this.state.lastname}</div>
                         </div>
+                        <div className={styles.row}>
+                            <div>{"کد ملی"}</div>
+                            <div>{this.state.national_code}</div>
+                        </div>
                     </>
                 )}
             </CloseModalLayout>
@@ -89,6 +95,7 @@ interface UserInfoModalState {
     username: string;
     firstname: string;
     lastname: string;
+    national_code: string;
 }
 
 interface UserInfoModalProps {

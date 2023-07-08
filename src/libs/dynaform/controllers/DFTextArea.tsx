@@ -92,7 +92,7 @@ export default class DFTextArea extends Component<DFTextAreaProps>{
                 />
 
                 {this.props.error || this.state.error ? (
-                    <div className={styles.error + " fec"}>
+                    <div className={styles.error + " tcerr"}>
                         {this.props.error || this.state.error}
                     </div>
                 ) : null}
@@ -116,7 +116,7 @@ export interface DFTextAreaProps {
     style?: React.CSSProperties;
     inputStyle?: React.CSSProperties;
     titleStyle?: React.CSSProperties;
-    error?: string;
+    error?: string | null;
     direction?: any;
     opacity?: any;
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styles from "./Dashboard.module.css";
-import Dynaform from "@/libs/dynaform/Dynaform";
 import DashboardCtl from "@/controllers/DashboardCtl";
 import Breadcrumb from "../components/dashboard/Breadcrumb";
 import ItemCard from "../components/dashboard/ItemCard";
@@ -23,6 +22,7 @@ export default class Dashboard extends Component<
     constructor(props: DashboardProps) {
         super(props);
         this.controller = new DashboardCtl(this);
+        window.document.title = "داشبورد | سامانه مدیریت مستندات فنی"
         this.state = {
             loading: true,
             current_folder_id: 0,

@@ -8,12 +8,8 @@ export default class LoginMdl {
     sendLoginReq = async (params: any) => {
         
         let result = await PostRequest(env.urls.login_user, params);
-
-        console.log(result);
         
-        return null;
-
-        if (result.rc == env.statusList.AUTH_FAILED.code) {
+        if (result.rc == env.statusList.WRONG_CREDENTIAL.code) {
             this.controller.onAuthFailed();
             return null;
         }

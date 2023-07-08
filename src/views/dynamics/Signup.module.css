@@ -3,12 +3,39 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     direction: rtl;
+    padding-bottom: 2rem;
+}
+
+.logo{
+    height: 5rem;
+    margin-top: calc(1rem + 2vh);
+}
+
+.title1{
+    font-size: 0.9rem;
+    opacity: 0.5;
+}
+
+.login_tx{
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.form{
+    width: 20rem;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.signup_link{
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
 }
 
 .form{
     width: 28rem;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }

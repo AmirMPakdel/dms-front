@@ -9,6 +9,7 @@ import { DFUploadProps } from "./controllers/DFUpload";
 export interface DynaElement {
     controller: "button" | "datepicker" | "select" | "space" | "textarea" | "textinput" | "upload",
     id: string,
+    error?: string|null,
 }
 
 export interface DynaButton extends DynaElement, DFButtonProps  {

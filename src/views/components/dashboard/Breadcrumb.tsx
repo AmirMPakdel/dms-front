@@ -37,7 +37,8 @@ export default class Breadcrumb extends Component<BreadcrumbProps,BreadcrumbStat
         let newList:any[] = [];
         if(node.id != 0){
             let temp = this.state.items;
-            for(let i=0; i<this.state.items.length; i++){
+            let l = temp.length;
+            for(let i=0; i<l; i++){
                 let obj = temp[temp.length-1];
                 if(obj.id !== node.id){
                     temp.pop();
@@ -51,6 +52,9 @@ export default class Breadcrumb extends Component<BreadcrumbProps,BreadcrumbStat
     }
 
     onOpenDirectory = (node:any)=>{
+        if(node.file.type != "folder" && node.file.type != "shared" ){
+            return;
+        }
         let list = this.state.items;
         list.push(node);
         this.setState({items:list});
