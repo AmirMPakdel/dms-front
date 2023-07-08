@@ -1,0 +1,33 @@
+
+.wrapper{
+    width: 48rem;
+    height: 30rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.8rem 1.4rem;
+    direction: rtl;
+}
+
+.title{
+    margin: 2rem 0;
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.row{
+    width: 20rem;
+    display: flex;
+    margin: 1.5rem 0;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 700;
+    border-bottom: solid rgba(0, 0, 0, 0.157) 1px;
+}
+
+.row>div:last-child{
+    font-weight: 400;
+}

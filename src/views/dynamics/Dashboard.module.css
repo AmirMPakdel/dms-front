@@ -9,22 +9,6 @@
     
 }
 
-.header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6rem;
-    background-color: white;
-    z-index: 100;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-}
-
-.htext{
-    color: #003e29;
-    font-size: 1.5rem;
-    margin: 2rem;
-}
 
 .htext2{
     color: #b1d794;
@@ -34,7 +18,7 @@
 .wrapper{
     width: calc(100vw - 3rem);
     max-width: 94rem;
-    min-height: 32rem;
+    min-height: calc(100vh - 15rem);
     border-radius: 6px;
     background-color: white;
     margin-top: 8rem;
@@ -56,4 +40,12 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 1rem;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0.6rem;
+    font-size: 0.8rem;
+    color: #b1d794;
+    user-select: none;
 }

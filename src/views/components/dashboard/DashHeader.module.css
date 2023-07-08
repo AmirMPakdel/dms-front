@@ -1,0 +1,83 @@
+.con{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    background-color: white;
+    z-index: 100;
+    padding: 0 calc(5vw + 1rem);
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.left_side{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+.profile_btn{
+    display: flex;
+    direction: rtl;
+    border: #003e2954 solid 2px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.name{
+    font-size: 1.1rem;
+    color: #003e29;
+}
+
+.user_icon{
+    height: 1.8rem;
+    margin-right: 0.5rem;
+}
+
+.popover_con{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.pop_btn{
+    width: 14rem;
+    height: 2.6rem;
+    margin: 0.2rem;
+}
+
+.logo{
+    height: 4rem;
+    margin-left: 1rem;
+}
+
+.right_side{
+    height: 100%;
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    color: #003e29;
+    font-size: 1rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+
+@media(max-width:1024px){
+    
+}
+
+@media(max-width:767px){
+    .con{
+        height: 8rem;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}

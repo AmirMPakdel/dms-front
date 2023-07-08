@@ -1,7 +1,13 @@
+import env from "@/env";
 
 export function authRedirection(){
 
     let current_url = window.location.href;
 
-    window.location.href = "/login";
+    goToLoginPage();
+}
+
+export function goToLoginPage(){
+
+    window.location.href = env.routes.user_login;
 }

@@ -12,6 +12,7 @@ import Loading from "../components/global/Loading";
 import UploadFileModal from "../modals/index/UploadFileModal";
 import EmptyList from "../components/global/EmptyList";
 import Observer from "@/libs/utils/observer";
+import DashHeader from "../components/dashboard/DashHeader";
 
 export default class Dashboard extends Component<
     DashboardProps,
@@ -90,11 +91,7 @@ export default class Dashboard extends Component<
         return (
             <DashboardLayout>
                 <div className={styles.con}>
-                    <div className={styles.header}>
-                        <div className={styles.htext}>
-                            {"AEOI Documentation Management System"}
-                        </div>
-                    </div>
+                    <DashHeader/>
 
                     <div className={styles.htext2}>
                         {"AEOI Documentation Management System"}
@@ -144,6 +141,8 @@ export default class Dashboard extends Component<
                             )}
                         </div>
                     </div>
+
+                    <div className={styles.footer}>{"اداره کل فناوری اطلاعات و مدیریت هوشمند"}</div>
                 </div>
             </DashboardLayout>
         );

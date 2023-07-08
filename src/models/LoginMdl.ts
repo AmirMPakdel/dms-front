@@ -6,7 +6,12 @@ export default class LoginMdl {
     constructor(public controller: LoginCtl) {}
 
     sendLoginReq = async (params: any) => {
+        
         let result = await PostRequest(env.urls.login_user, params);
+
+        console.log(result);
+        
+        return null;
 
         if (result.rc == env.statusList.AUTH_FAILED.code) {
             this.controller.onAuthFailed();

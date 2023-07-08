@@ -19,10 +19,12 @@ export default class LoginCtl {
 
         let result = await this.model.sendLoginReq(params);
 
-        if (result) {
-            setCookie(env.cookies.user_token, result.token, 90);
-            window.location.href = env.routes.user_dashboard;
-        }
+        return;
+
+        // if (result) {
+        //     setCookie(env.cookies.user_token, result.token, 90);
+        //     window.location.href = env.routes.user_dashboard;
+        // }
     };
 
     onAuthFailed = ()=>{
