@@ -41,6 +41,7 @@ export interface DynaUpload extends DynaElement, DFUploadProps {
 }
 
 export interface DynaRowData {
+    display?: boolean;
     columnSizes: Array<number>;
     elements: Array<DynaButton | DynaDatepicker | DynaSelect | DynaSpace | DynaTextArea | DynaTextInput | DynaUpload>;
 }

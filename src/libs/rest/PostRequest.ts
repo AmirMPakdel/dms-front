@@ -19,8 +19,14 @@ export default function PostRequest(
             body.token = getCookie(env.cookies.user_token);
         }
 
+        let req_url = env.server_domain+url;
+
+        if(options?.customUrl){
+            req_url = url;
+        }
+
         axios
-            .post(env.server_domain+url, body)
+            .post(req_url, body)
             .then((value) => {
 
                 if(value.status != 200){
@@ -49,5 +55,7 @@ interface RequestResolveValue {
 }
 
 interface RequestOptions {
-    addUserToken?: boolean
+    addUserToken?: boolean;
+    FormData?: boolean;
+    customUrl?: boolean;
 }
