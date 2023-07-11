@@ -12,10 +12,7 @@ import ShareListModal from "@/views/modals/index/ShareListModal";
 import DeleteSharedFileModal from "@/views/modals/index/DeleteSharedFileModal";
 import UpdateFileModal from "@/views/modals/index/UpdateFileModal";
 import PublicAccessLinkModal from "@/views/modals/index/PublicAccessLinkModal";
-<<<<<<< HEAD
 import GetRequest from "@/libs/rest/GetRequest";
-=======
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
 
 export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     constructor(props: ItemCardProps) {
@@ -41,7 +38,6 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
             <PublicAccessLinkModal data={this.props.data} />
         );
     };
-<<<<<<< HEAD
 
     downloadFile = () => {
         this.setState({ popover_open: false });
@@ -50,8 +46,6 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
             token: getCookie(env.cookies.user_token),
         }});
     }
-=======
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
 
     showShareList = () => {
         this.setState({ popover_open: false });
@@ -107,11 +101,7 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
     };
 
     renderMoreOptions = () => {
-<<<<<<< HEAD
         if (this.props.data.file?.type == "shared") {
-=======
-        if (this.props.data.file.type == "shared") {
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
             return (
                 <div className={styles.options_wrapper}>
                     <a
@@ -161,12 +151,6 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                         نمایش
                     </a>
                 )}
-<<<<<<< HEAD
-=======
-                {this.props.data.file.type !== "folder" ? (
-                    <a className={styles.options_item}>بروزرسانی</a>
-                ) : null}
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
                 {this.props.data.file.type != "folder" ? (
                     <a
                         className={styles.options_item}
@@ -178,7 +162,6 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                 {this.props.data.file.type != "folder" ? (
                     <a
                         className={styles.options_item}
-<<<<<<< HEAD
                         onClick={this.downloadFile}
                     >
                         دانلود
@@ -187,8 +170,6 @@ export default class ItemCard extends Component<ItemCardProps, ItemCardState> {
                 {this.props.data.file.type != "folder" ? (
                     <a
                         className={styles.options_item}
-=======
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
                         onClick={this.showShareList}
                     >
                         اشتراک گذاری

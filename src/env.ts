@@ -1,14 +1,9 @@
 const env = {
 
     SSO:{
-<<<<<<< HEAD
         enabled: false,
         SSO_login_page: "https://cas.aeoi.gov/login?app_id=4",
         SSO_logout_page: "https://cas.aeoi.gov",
-=======
-        enabled: true,
-        SSO_login_page: "https://cas.aeoi.gov/login?app_id=4",
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
         SSO_getToken_url: "https://cas.aeoi.gov/api/getToken",
         SSO_getToken_param: "credential",
         SSO_editProfile_page: "https://cas.aeoi.gov/editProfile?app_id=4",
@@ -21,11 +16,7 @@ const env = {
         user_edit_profile: "/editProfile",
     },
 
-<<<<<<< HEAD
     server_domain: "http://localhost:5080",//"https://dms.aeoi.gov",
-=======
-    server_domain: "http://172.26.208.39",
->>>>>>> 898bec21098b7f083396311eb6dae4bdfbbe72db
 
     urls: {
         signup_user: "/api/user/signup",
