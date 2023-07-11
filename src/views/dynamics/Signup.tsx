@@ -4,6 +4,7 @@ import Dynaform from "@/libs/dynaform/Dynaform";
 import SignupCtl from "@/controllers/SignupCtl";
 import { Button } from "antd";
 import env from "@/env";
+import { goToLoginPage } from "@/libs/utils/redirect";
 
 export default class Signup extends Component<SignupProps, SignupState> {
     controller: SignupCtl;
@@ -12,12 +13,12 @@ export default class Signup extends Component<SignupProps, SignupState> {
         this.controller = new SignupCtl(this);
         window.document.title = "ثبت نام | سامانه مدیریت مستندات فنی"
         this.state = {
-            username: "apakdel",
-            firstname: "امیر",
-            lastname: "پاکدل",
-            national_code: "2581095598",
-            password: "123456789",
-            password_repeated: "123456789",
+            username: "",
+            firstname: "",
+            lastname: "",
+            national_code: "",
+            password: "",
+            password_repeated: "",
             errors:{
                 username:null,
                 firstname:null,
@@ -40,6 +41,12 @@ export default class Signup extends Component<SignupProps, SignupState> {
     };
 
     render(): React.ReactNode {
+
+        if(env.SSO.enabled){
+            goToLoginPage();
+            return <div/>;
+        }
+
         return (
             <div className={styles.con}>
 
@@ -132,6 +139,7 @@ export default class Signup extends Component<SignupProps, SignupState> {
                                         type: "password",
                                         value: this.state.password_repeated,
                                         error: this.state.errors.password_repeated,
+                                        OnEnterKeyPressed: this.onSubmit,
                                         onChange: (v) => {
                                             this.onValueChange(
                                                 v,

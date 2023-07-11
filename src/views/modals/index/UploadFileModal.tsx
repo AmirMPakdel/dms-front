@@ -17,6 +17,10 @@ export default class UploadFileModal extends Component<
         this.state = {
             name: "",
             file: null,
+            errors:{
+                name: null,
+                file: null,
+            }
         };
     }
 
@@ -33,7 +37,30 @@ export default class UploadFileModal extends Component<
         this.setState({file});
     }
 
+    checkValidation = ()=>{
+
+        let errors:any = {name: null, file:null};
+        let is_valid = true;
+        let {name, file} = this.state;
+
+        if(name.length<1){
+            errors.name = "نام فایل خالی است";
+            is_valid = false;
+        }
+        if(!file){
+            errors.file = "فایل انتخاب نشده";
+            is_valid = false;
+        }
+
+        this.setState({errors});
+        return is_valid;
+    }
+
     onSubmit = () => {
+
+        if(!this.checkValidation()){
+            return;
+        }
 
         let type = getType(this.state.file)
 
@@ -78,9 +105,11 @@ export default class UploadFileModal extends Component<
                                         id: "name",
                                         title: "نام فایل",
                                         onChange: (name) => {
-                                            this.setState({ name });
+                                            this.setState({name});
                                         },
+                                        OnEnterKeyPressed: this.onSubmit,
                                         value: this.state.name,
+                                        error: this.state.errors.name,
                                     },
                                 ],
                             },
@@ -92,6 +121,7 @@ export default class UploadFileModal extends Component<
                                         id: "file",
                                         title: "آپلود فایل",
                                         onChange: this.onFileChange,
+                                        error: this.state.errors.file,
                                     },
                                 ],
                             },
@@ -118,6 +148,10 @@ export default class UploadFileModal extends Component<
 interface UploadFileModalState {
     name: string;
     file: File|null;
+    errors: {
+        name?: string|null,
+        file?: string|null,
+    }
 }
 
 interface UploadFileModalProps {

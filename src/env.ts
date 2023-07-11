@@ -1,16 +1,28 @@
 const env = {
+
+    SSO:{
+        enabled: false,
+        SSO_login_page: "https://cas.aeoi.gov/login?app_id=4",
+        SSO_logout_page: "https://cas.aeoi.gov",
+        SSO_getToken_url: "https://cas.aeoi.gov/api/getToken",
+        SSO_getToken_param: "credential",
+        SSO_editProfile_page: "https://cas.aeoi.gov/editProfile?app_id=4",
+    },
+
     routes: {
         user_login: "/login",
         user_signup: "/signup",
         user_dashboard: "/dashboard",
+        user_edit_profile: "/editProfile",
     },
 
-    server_domain: "http://localhost:5080",
+    server_domain: "http://localhost:5080",//"https://dms.aeoi.gov",
 
     urls: {
         signup_user: "/api/user/signup",
         login_user: "/api/user/login",
         get_file_from_access_link: "/api/file/getFileFromAccessLink",
+        login_with_cas: "/api/user/loginWithCas",
     },
 
     cookies: {
@@ -31,5 +43,12 @@ const env = {
         secondary: "#467061",
     },
 };
+
+if(env.SSO.enabled){
+
+    env.routes.user_login = env.SSO.SSO_login_page;
+    env.routes.user_edit_profile = env.SSO.SSO_editProfile_page;
+    env.routes.user_signup = "/404";
+}
 
 export default env;

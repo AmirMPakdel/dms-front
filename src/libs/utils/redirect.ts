@@ -9,5 +9,18 @@ export function authRedirection(){
 
 export function goToLoginPage(){
 
-    window.location.href = env.routes.user_login;
+    if(env.SSO.enabled){
+        window.location.href = env.SSO.SSO_login_page;
+    }else{
+        window.location.href = env.routes.user_login;
+    }
+}
+
+export function goToLogoutPage(){
+
+    if(env.SSO.enabled){
+        window.location.href = env.SSO.SSO_logout_page;
+    }else{
+        window.location.href = env.routes.user_login;
+    }
 }

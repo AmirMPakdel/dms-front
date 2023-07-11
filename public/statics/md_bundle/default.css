@@ -13,6 +13,18 @@ cnt{
   text-align: center;
 }
 
+rtl{
+  display: block;
+  text-align: right;
+  direction: rtl;
+}
+
+ltr{
+  display: block;
+  text-align: left;
+  direction: ltr;
+}
+
 fa{
   display: block;
   direction: rtl;

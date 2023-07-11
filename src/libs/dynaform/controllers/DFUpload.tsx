@@ -36,18 +36,11 @@ export default class DFUpload extends Component<DFUploadProps> {
     onInputChange = (e: any) => {
         let file = e.target.files[0];
 
-        console.log(file);
-
-        if (file.size < 1024 * 1024 * 1024) {
-            // this.setState({
-            //     file,
-            //     file_name: file.name,
-            //     status: "ready",
-            // });
+        if (file.size < 25 * 1024 * 1024) {
 
             this.props.onChange(file);
         } else {
-            chest.openNotification("فایل انتخابی حجم بالای 1 گیگابایت دارد", "error");
+            chest.openNotification("فایل انتخابی حجم بالای 25 مگابایت دارد", "error");
         }
     };
 
@@ -60,9 +53,16 @@ export default class DFUpload extends Component<DFUploadProps> {
     };
 
     render(): React.ReactNode {
+
+        let addConClass = "";
+
+        if(this.props.error){
+            addConClass+=" tbcerri";
+        }
+
         return (
             <div
-                className={styles.con}
+                className={styles.con+" "+addConClass}
                 style={{ flex: this.props.flex || "1" }}
             >
                 <Button style={{height:"100%", width:"100%"}}
@@ -80,6 +80,13 @@ export default class DFUpload extends Component<DFUploadProps> {
                     type={"file"}
                     accept={".md, .pdf, .jpg, .png, .gif, .mp4"}
                 />
+
+                {this.props.error?(
+                    <div className={styles.error + " tcerr"}>
+                        {this.props.error}
+                    </div>
+                ) : null}
+
             </div>
         );
     }
@@ -90,6 +97,6 @@ export interface DFUploadProps {
     ref?: (ref: DFUpload) => void;
     flex?: number | string;
     title: string;
-
+    error?: string|null;
     onChange: (file:File)=>void;
 }

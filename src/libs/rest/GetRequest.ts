@@ -14,7 +14,7 @@ export default function GetRequest(
         // }
 
         axios
-            .get(env.server_domain+url)
+            .get(env.server_domain+url, options)
             .then((value) => {
 
                 if(value.status != 200){

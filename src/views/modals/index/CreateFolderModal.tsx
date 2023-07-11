@@ -15,6 +15,9 @@ export default class CreateFolderModal extends Component<
         super(props);
         this.state = {
             name: "",
+            errors:{
+                name: null,
+            }
         };
     }
 
@@ -26,7 +29,27 @@ export default class CreateFolderModal extends Component<
         }
     };
 
+    checkValidation = ()=>{
+
+        let errors:any = {name: null};
+        let is_valid = true;
+        let {name} = this.state;
+
+        if(name.length<1){
+            errors.name = "نام پوشه خالی است";
+            is_valid = false;
+        }
+
+        this.setState({errors});
+        return is_valid;
+    }
+
     onSubmit = () => {
+
+        if(!this.checkValidation()){
+            return;
+        }
+
         let params = {
             token: getCookie(env.cookies.user_token),
             name: this.state.name,
@@ -66,6 +89,8 @@ export default class CreateFolderModal extends Component<
                                         onChange: (name) => {
                                             this.setState({ name });
                                         },
+                                        error:this.state.errors.name,
+                                        OnEnterKeyPressed: this.onSubmit,
                                         value: this.state.name,
                                     },
                                 ],
@@ -92,6 +117,9 @@ export default class CreateFolderModal extends Component<
 
 interface CreateFolderModalState {
     name: string;
+    errors: {
+        name?: string|null,
+    }
 }
 
 interface CreateFolderModalProps {

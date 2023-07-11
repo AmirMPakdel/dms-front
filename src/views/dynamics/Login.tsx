@@ -4,6 +4,7 @@ import Dynaform from "@/libs/dynaform/Dynaform";
 import LoginCtl from "@/controllers/LoginCtl";
 import env from "@/env";
 import { Button } from "antd";
+import { goToLoginPage } from "@/libs/utils/redirect";
 
 export default class Login extends Component<LoginProps, LoginState> {
 
@@ -14,8 +15,8 @@ export default class Login extends Component<LoginProps, LoginState> {
         this.controller = new LoginCtl(this);
         window.document.title = "ورود | سامانه مدیریت مستندات فنی"
         this.state = {
-            username: "apakdel",
-            password: "123456789",
+            username: "",
+            password: "",
             errors:{
                 username:null,
                 password:null,
@@ -34,6 +35,12 @@ export default class Login extends Component<LoginProps, LoginState> {
     };
 
     render(): React.ReactNode {
+
+        if(env.SSO.enabled && window.location.pathname != "/backdoorLogin"){
+            goToLoginPage();
+            return <div/>;
+        }
+
         return (
             <div className={styles.con}>
 
@@ -74,6 +81,7 @@ export default class Login extends Component<LoginProps, LoginState> {
                                         type: "password",
                                         value: this.state.password,
                                         error: this.state.errors.password,
+                                        OnEnterKeyPressed: this.onSubmit,
                                         onChange: (v) => {
                                             this.onValueChange(v, "password");
                                         },

@@ -6,7 +6,7 @@ import chest from "@/libs/utils/chest";
 import UserInfoModal from "@/views/modals/index/UserInfoModal";
 import { getCookie, setCookie } from "@/libs/utils/cookie";
 import env from "@/env";
-import { goToLoginPage } from "@/libs/utils/redirect";
+import { goToLogoutPage } from "@/libs/utils/redirect";
 
 export default class DashHeader extends Component<
     DashHeaderProps,
@@ -26,10 +26,17 @@ export default class DashHeader extends Component<
         chest.ModalLayout.setAndShowModal(1, <UserInfoModal />);
     }
 
+    onEditProfile = ()=>{
+
+        if(env.SSO.enabled){
+            window.location.href = env.SSO.SSO_editProfile_page;
+        }
+    }
+
     onLogout = ()=>{
         this.setState({ popover_open: false });
         setCookie(env.cookies.user_token, "", -1);
-        goToLoginPage();
+        goToLogoutPage();
     }
 
     renderProfileOptions = () => {
@@ -40,6 +47,7 @@ export default class DashHeader extends Component<
              icon={<UserOutlined/>}>{"اطلاعات پرسنلی"}</Button>
 
             <Button className={styles.pop_btn}
+            onClick={this.onEditProfile}
              icon={<EditOutlined/>}>{"ویرایش اطلاعات پرسنلی"}</Button>
 
             <Button className={styles.pop_btn}

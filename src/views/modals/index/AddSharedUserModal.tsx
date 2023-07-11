@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import styles from "./AddSharedUserModal.module.css";
 import chest from "@/libs/utils/chest";
 import CloseModalLayout from "../CloseModalLayout";
-import { Button } from "antd";
 import Dynaform from "@/libs/dynaform/Dynaform";
 import PostRequest from "@/libs/rest/PostRequest";
-import { getCookie } from "@/libs/utils/cookie";
 import env from "@/env";
 
 export default class AddSharedUserModal extends Component<
@@ -16,6 +14,9 @@ export default class AddSharedUserModal extends Component<
         super(props);
         this.state = {
             username: "",
+            errors:{
+                username: null,
+            }
         };
     }
 
@@ -27,7 +28,26 @@ export default class AddSharedUserModal extends Component<
         }
     };
 
+    checkValidation = ()=>{
+
+        let errors:any = {username: null};
+        let is_valid = true;
+        let {username} = this.state;
+
+        if(username.length<3){
+            errors.username = "نام کاربری نامعتبر";
+            is_valid = false;
+        }
+
+        this.setState({errors});
+        return is_valid;
+    }
+
     onSubmit = () => {
+
+        if(!this.checkValidation()){
+            return;
+        }
 
         let params = {
             username: this.state.username,
@@ -66,6 +86,8 @@ export default class AddSharedUserModal extends Component<
                                         onChange: (username) => {
                                             this.setState({ username });
                                         },
+                                        error:this.state.errors.username,
+                                        OnEnterKeyPressed: this.onSubmit,
                                         value: this.state.username,
                                     },
                                 ],
@@ -93,6 +115,9 @@ export default class AddSharedUserModal extends Component<
 
 interface AddSharedUserModalState {
     username: string;
+    errors: {
+        username?: string|null,
+    }
 }
 
 interface AddSharedUserModalProps {

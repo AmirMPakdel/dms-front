@@ -41,7 +41,7 @@ export default class SignupCtl {
         }
         if(password.length<8){
             isValid = false;
-            errors.password = "رمزعبور نامعتبر";
+            errors.password = "رمزعبور باید حداقل از 8 کارکتر  باشد";
         }
         if(!errors.password && password_repeated!=password){
             isValid = false;

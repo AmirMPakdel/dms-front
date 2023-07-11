@@ -2,13 +2,13 @@
 	font-family: IranSans;
 	font-style: normal;
 	font-weight: 400;
-	src: url("/statics/md_bundle/IRANSansWeb.woff2") format("woff2");
+	src: url("/bundle/IRANSansWeb.woff2") format("woff2");
 }
 @font-face {
 	font-family: IranSansFaNum;
 	font-style: normal;
 	font-weight: 400;
-	src: url("/statics/md_bundle/IRANSansWeb\(FaNum\).woff") format("woff");
+	src: url("/bundle/IRANSansWeb\(FaNum\).woff") format("woff");
 }
 
 .faNum{

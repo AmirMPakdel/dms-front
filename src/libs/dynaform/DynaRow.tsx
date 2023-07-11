@@ -51,6 +51,11 @@ export default class DynaRow extends Component<DynaRowProps> {
     };
 
     render(): React.ReactNode {
+
+        if(this.props.data.display===false){
+            return null;
+        }
+        
         return (
             <div className={styles.con}>
                 {this.props.data.elements.map((v, i) =>

@@ -24,8 +24,6 @@ export default class test extends Component<TestProps, TestState> {
     componentDidMount() {}
 
     onDateChange = (e: { value: Date }) => {
-        console.log(e.value);
-
         this.setState({ datepicker1: e.value });
     };
 

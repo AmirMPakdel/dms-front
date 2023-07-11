@@ -1,7 +1,7 @@
 import env from "@/env";
 import axios from "axios";
 import { getCookie, setCookie } from "../utils/cookie";
-import { authRedirection } from "../utils/redirect";
+import { authRedirection, goToLoginPage } from "../utils/redirect";
 
 export default function PostRequest(
     url: string,
@@ -19,8 +19,14 @@ export default function PostRequest(
             body.token = getCookie(env.cookies.user_token);
         }
 
+        let req_url = env.server_domain+url;
+
+        if(options?.customUrl){
+            req_url = url;
+        }
+
         axios
-            .post(env.server_domain+url, body)
+            .post(req_url, body)
             .then((value) => {
 
                 if(value.status != 200){
@@ -28,7 +34,7 @@ export default function PostRequest(
                 }else{
                     if(value.data.rc == env.statusList.AUTH_FAILED.code){
                         setCookie(env.cookies.user_token, "", -1);
-                        authRedirection();
+                        goToLoginPage();
                     }else{
                         resolve(value.data);
                     }
@@ -49,5 +55,7 @@ interface RequestResolveValue {
 }
 
 interface RequestOptions {
-    addUserToken?: boolean
+    addUserToken?: boolean;
+    FormData?: boolean;
+    customUrl?: boolean;
 }
