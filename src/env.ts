@@ -16,7 +16,7 @@ const env = {
         user_edit_profile: "/editProfile",
     },
 
-    server_domain: "http://localhost:5080",//"https://dms.aeoi.gov",
+    server_domain: "http://localhost",//"https://dms.aeoi.gov",
 
     urls: {
         signup_user: "/api/user/signup",
