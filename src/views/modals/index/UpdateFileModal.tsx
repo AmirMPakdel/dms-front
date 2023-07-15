@@ -37,6 +37,12 @@ export default class UpdateFileModal extends Component<
         this.setState({file});
     }
 
+    onOpenInEditor = ()=>{
+        chest.ModalLayout.visibleToggle(1, false);
+        let {id, ext} = this.props.data.file;
+        open("/editor?file_id="+id+"&file_ext="+ext);
+    }
+
     checkValidation = ()=>{
 
         let errors:any = {name: null, file:null};
@@ -87,6 +93,19 @@ export default class UpdateFileModal extends Component<
                     style={{ border: "none" }}
                     formData={{
                         rows: [
+                            {
+                                display: this.props.data.file.type=="md"?true:false,
+                                columnSizes: [1],
+                                elements: [
+                                    {
+                                        controller: "button",
+                                        id: "openInEditor",
+                                        title: "بازکردن در ویرایشگر",
+                                        type: "default",
+                                        onClick: this.onOpenInEditor,
+                                    },
+                                ],
+                            },
                             {
                                 columnSizes: [1],
                                 elements: [
